@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take Exam</title>
+</head>
+<body>
+    <h1>Exam Title</h1>
+    <form action="{{ url_for('submit_exam') }}" method="post">
+        <!-- Loop through exam questions -->
+        {% for question in exam_questions %}
+            <h2>{{ question.question_text }}</h2>
+            <!-- Check question type and render appropriate input field -->
+            {% if question.question_type == 'text' %}
+                <input type="text" name="answer_{{ question.id }}"><br><br>
+            {% elif question.question_type == 'image' %}
+                <img src="{{ question.image_url }}" alt="Question Image"><br><br>
+                <input type="text" name="answer_{{ question.id }}"><br><br>
+            {% elif question.question_type == 'voice' %}
+                <audio controls>
+                    <source src="{{ question.voice_url }}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio><br><br>
+                <input type="text" name="answer_{{ question.id }}"><br><br>
+            {% endif %}
+        {% endfor %}
+        <input type="submit" value="Submit Exam">
+    </form>
+</body>
+</html>

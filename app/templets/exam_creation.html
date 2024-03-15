@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Exam</title>
+</head>
+<body>
+    <h1>Create New Exam</h1>
+    <form action="{{ url_for('create_exam') }}" method="post">
+        <label for="exam_name">Exam Name:</label><br>
+        <input type="text" id="exam_name" name="exam_name"><br><br>
+        
+        <label for="question_type">Question Type:</label><br>
+        <select id="question_type" name="question_type">
+            <option value="text">Text</option>
+            <option value="image">Image</option>
+            <option value="voice">Voice</option>
+            <!-- Add more options for different question types as needed -->
+        </select><br><br>
+        
+        <!-- Add more fields for other exam details, such as time limit, etc. -->
+        
+        <input type="submit" value="Create Exam">
+    </form>
+</body>
+</html>
